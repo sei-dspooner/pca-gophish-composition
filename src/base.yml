@@ -5,7 +5,7 @@
   become_method: sudo
   roles:
     - automated_security_updates
-    - banner
-    - clamav
-    - htop
-    - persist_journald
+    #- banner
+    #- clamav
+    #- htop
+    #- persist_journald
