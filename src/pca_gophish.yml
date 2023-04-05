@@ -6,6 +6,9 @@
   roles:
     - pca_gophish_composition
   tasks:
+    - name: Populate service_facts
+      # Ws use this as a conditional to stop the exim4 service
+      service_facts:
     - name: Install python3-boto3, used by cloud-init scripts
       ansible.builtin.package:
         name:
@@ -36,6 +39,7 @@
         enabled: false
         name: exim4.service
         state: stopped
+      when: "'exim4' in services"
     - name: Uninstall exim4 packages
       ansible.builtin.apt:
         # Use "autoremove" to get rid of any exim4 dependencies
@@ -43,6 +47,7 @@
         autoremove: yes
         name: exim4*
         state: absent
+      when: "'exim4' in services"
     - name: Configure PCA Gophish Docker composition
       block:
         - name: >
