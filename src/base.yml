@@ -4,5 +4,6 @@
   become: yes
   become_method: sudo
   roles:
-    - automated_security_updates
+    #  Temporarily removing this due to Amazon Linux 2 vs 2023
+    #- automated_security_updates
     - persist_journald
